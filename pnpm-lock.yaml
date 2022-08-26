@@ -3,14 +3,20 @@ lockfileVersion: 5.4
 specifiers:
   json-server: ^0.17.0
   materialize-css: ^1.0.0
+  moment: ^2.29.4
+  prop-types: ^15.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-moment: ^1.1.2
   react-scripts: 5.0.1
 
 dependencies:
   materialize-css: 1.0.0
+  moment: 2.29.4
+  prop-types: 15.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-moment: 1.1.2_mmavuqf6ek6upnyryxchoaliru
   react-scripts: 5.0.1_react@18.2.0
 
 devDependencies:
@@ -6812,6 +6818,10 @@ packages:
       minimist: 1.2.6
     dev: false
 
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
   /morgan/1.10.0:
     resolution: {integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==}
     engines: {node: '>= 0.8.0'}
@@ -8262,6 +8272,18 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-moment/1.1.2_mmavuqf6ek6upnyryxchoaliru:
+    resolution: {integrity: sha512-lfb+shYXI2tXlQrNUpNr05/1D/kzFj8Isbfp89DQrpZk0fs2JIAnLHWETR0hQS9zvtzwLWlVv0wKLffbue5HoA==}
+    peerDependencies:
+      moment: ^2.29.0
+      prop-types: ^15.7.0
+      react: ^16.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      moment: 2.29.4
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-refresh/0.11.0:
