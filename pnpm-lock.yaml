@@ -2,11 +2,13 @@ lockfileVersion: 5.4
 
 specifiers:
   json-server: ^0.17.0
+  materialize-css: ^1.0.0
   react: ^18.2.0
   react-dom: ^18.2.0
   react-scripts: 5.0.1
 
 dependencies:
+  materialize-css: 1.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-scripts: 5.0.1_react@18.2.0
@@ -6681,6 +6683,10 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+    dev: false
+
+  /materialize-css/1.0.0:
+    resolution: {integrity: sha512-4/oecXl8y/1i8RDZvyvwAICyqwNoKU4or5uf8uoAd74k76KzZ0Llym4zhJ5lLNUskcqjO0AuMcvNyDkpz8Z6zw==}
     dev: false
 
   /mdn-data/2.0.14:
