@@ -1,0 +1,7 @@
+input#search {
+  color: #fff;
+}
+
+input#search:focus {
+  color: #000;
+}
