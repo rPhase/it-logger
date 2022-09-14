@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@redux-devtools/extension': ^3.2.3
+  '@reduxjs/toolkit': ^1.8.5
   json-server: ^0.17.0
   materialize-css: ^1.0.0
   moment: ^2.29.4
@@ -11,21 +11,17 @@ specifiers:
   react-moment: ^1.1.2
   react-redux: ^8.0.2
   react-scripts: 5.0.1
-  redux: ^4.2.0
-  redux-thunk: ^2.4.1
 
 dependencies:
-  '@redux-devtools/extension': 3.2.3_redux@4.2.0
+  '@reduxjs/toolkit': 1.8.5_kkwg4cbsojnjnupd3btipussee
   materialize-css: 1.0.0
   moment: 2.29.4
   prop-types: 15.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-moment: 1.1.2_mmavuqf6ek6upnyryxchoaliru
-  react-redux: 8.0.2_e42enmjmqb4imi3q3iaq2rrebm
+  react-redux: 8.0.2_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_react@18.2.0
-  redux: 4.2.0
-  redux-thunk: 2.4.1_redux@4.2.0
 
 devDependencies:
   json-server: 0.17.0
@@ -1970,14 +1966,23 @@ packages:
       webpack-dev-server: 4.10.0_webpack@5.74.0
     dev: false
 
-  /@redux-devtools/extension/3.2.3_redux@4.2.0:
-    resolution: {integrity: sha512-y90IIqdQF6kIkP4KfBCfiFrnu9KMrEPUmcnb5A3v12tjfwRJUXecX8vCEbFqqJLjOomvVmis0Aal7QdFjk6CRQ==}
+  /@reduxjs/toolkit/1.8.5_kkwg4cbsojnjnupd3btipussee:
+    resolution: {integrity: sha512-f4D5EXO7A7Xq35T0zRbWq5kJQyXzzscnHKmjnu2+37B3rwHU6mX9PYlbfXdnxcY6P/7zfmjhgan0Z+yuOfeBmA==}
     peerDependencies:
-      redux: ^3.1.0 || ^4.0.0
+      react: ^16.9.0 || ^17.0.0 || ^18
+      react-redux: ^7.2.1 || ^8.0.2
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-redux:
+        optional: true
     dependencies:
-      '@babel/runtime': 7.18.9
-      immutable: 4.1.0
+      immer: 9.0.15
+      react: 18.2.0
+      react-redux: 8.0.2_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
+      redux-thunk: 2.4.1_redux@4.2.0
+      reselect: 4.1.6
     dev: false
 
   /@rollup/plugin-babel/5.3.1_2uin6pbxavst3oir53roxbd5qi:
@@ -5499,10 +5504,6 @@ packages:
     resolution: {integrity: sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ==}
     dev: false
 
-  /immutable/4.1.0:
-    resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
-    dev: false
-
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -8345,7 +8346,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-redux/8.0.2_e42enmjmqb4imi3q3iaq2rrebm:
+  /react-redux/8.0.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-nBwiscMw3NoP59NFCXFf02f8xdo+vSHT/uZ1ldDwF7XaTpzm+Phk97VT4urYBl5TYAPNVaFm12UHAEyzkpNzRA==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -8373,7 +8374,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
-      redux: 4.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
@@ -8641,6 +8641,10 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+    dev: false
+
+  /reselect/4.1.6:
+    resolution: {integrity: sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==}
     dev: false
 
   /resolve-cwd/3.0.0:

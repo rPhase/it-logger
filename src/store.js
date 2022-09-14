@@ -1,16 +1,14 @@
-import { legacy_createStore as createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from '@redux-devtools/extension';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
 
-const initialState = {};
+import logReducer from './reducers/logReducer';
+import techReducer from './reducers/techReducer';
 
-const middleware = [thunk];
-
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+const store = configureStore({
+  reducer: {
+    // Define a top-level state field name 'log' handled by 'logReducer'
+    log: logReducer,
+    tech: techReducer,
+  },
+});
 
 export default store;
