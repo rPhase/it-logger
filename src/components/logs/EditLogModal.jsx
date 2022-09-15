@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import TechSelectOptions from '../techs/TechSelectOptions';
 
-const EditLogModal = ({ current, updateLog }) => {
+const EditLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+  const dispatch = useDispatch();
+  const current = useSelector((state) => state.log.current);
 
   useEffect(() => {
     if (current) {
@@ -30,7 +31,7 @@ const EditLogModal = ({ current, updateLog }) => {
         date: new Date(),
       };
 
-      updateLog(updLog);
+      dispatch(updateLog(updLog));
       M.toast({ html: `Log updated by ${tech}` });
 
       // Clear Fields
@@ -104,18 +105,9 @@ const EditLogModal = ({ current, updateLog }) => {
   );
 };
 
-EditLogModal.propTypes = {
-  current: PropTypes.object,
-  updateLog: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  current: state.log.current,
-});
-
 const modalStyle = {
   width: '75%',
   height: '75%',
 };
 
-export default connect(mapStateToProps, { updateLog })(EditLogModal);
+export default EditLogModal;

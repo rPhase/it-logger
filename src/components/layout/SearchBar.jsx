@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { searchLogs } from '../../actions/logActions';
 
-const SearchBar = ({ searchLogs }) => {
+const SearchBar = () => {
   const [search, setSearch] = useState('');
   const didMount = useRef(false);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
@@ -20,14 +20,14 @@ const SearchBar = ({ searchLogs }) => {
       didMount.current = true;
     } else {
       timerID = setTimeout(() => {
-        searchLogs(search);
+        dispatch(searchLogs(search));
       }, 500);
     }
 
     return () => {
       clearTimeout(timerID);
     };
-  }, [search, searchLogs]);
+  }, [search, dispatch]);
 
   return (
     <nav style={{ marginBottom: '30px' }} className='blue'>
@@ -51,8 +51,4 @@ const SearchBar = ({ searchLogs }) => {
   );
 };
 
-SearchBar.propTypes = {
-  searchLogs: PropTypes.func.isRequired,
-};
-
-export default connect(null, { searchLogs })(SearchBar);
+export default SearchBar;

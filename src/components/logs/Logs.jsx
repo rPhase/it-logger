@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import Preloader from '../layout/Preloader';
 import LogItem from './LogItem';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { getLogs } from '../../actions/logActions';
 
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = () => {
+  const dispatch = useDispatch();
+  const { logs, loading } = useSelector((state) => state.log);
+
   useEffect(() => {
-    getLogs();
-  }, [getLogs]);
+    dispatch(getLogs());
+  }, [dispatch]);
 
   if (loading || logs === null) {
     return <Preloader />;
@@ -28,13 +30,4 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
   );
 };
 
-Logs.propTypes = {
-  log: PropTypes.object.isRequired,
-  getLogs: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  log: state.log,
-});
-
-export default connect(mapStateToProps, { getLogs })(Logs);
+export default Logs;
