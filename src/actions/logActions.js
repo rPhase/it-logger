@@ -48,7 +48,7 @@ export const addLog = (log) => {
 export const deleteLog = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(logSetLoading());
+      // dispatch(logSetLoading());
       await fetch(`/logs/${id}`, {
         method: 'DELETE',
       });
@@ -64,7 +64,7 @@ export const deleteLog = (id) => {
 export const updateLog = (log) => {
   return async (dispatch) => {
     try {
-      dispatch(logSetLoading());
+      // dispatch(logSetLoading());
       const res = await fetch(`/logs/${log.id}`, {
         method: 'PUT',
         body: JSON.stringify(log),
