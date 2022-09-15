@@ -52,10 +52,10 @@ const logSlice = createSlice({
     logSetCurrent(state, action: PayloadAction<ILog>) {
       state.current = action.payload;
     },
-    logClearCurrent(state, action) {
+    logClearCurrent(state) {
       state.current = null;
     },
-    logSetLoading(state, action) {
+    logSetLoading(state) {
       state.loading = true;
     },
     logError(state, action: PayloadAction<string>) {

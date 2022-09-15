@@ -4,25 +4,28 @@ import {
   techDelete,
   techError,
   techLoading,
+  ITech,
 } from '../components/techs/techSlice';
+import { AppDispatch } from '../store';
+
 
 // Get techs from server
 export const getTechs = () => {
-  return async (dispatch) => {
+  return async (dispatch:AppDispatch) => {
     try {
       dispatch(techLoading());
       const res = await fetch('/techs');
       const data = await res.json();
       dispatch(techGet(data));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(techError(error.response.statusText));
     }
   };
 };
 
 // Add new tech
-export const addTech = (tech) => {
-  return async (dispatch) => {
+export const addTech = (tech:ITech) => {
+  return async (dispatch:AppDispatch) => {
     try {
       dispatch(techLoading());
       const res = await fetch('/techs', {
@@ -34,15 +37,15 @@ export const addTech = (tech) => {
       });
       const data = await res.json();
       dispatch(techAdd(data));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(techError(error.response.statusText));
     }
   };
 };
 
 // Delete tech from server
-export const deleteTech = (id) => {
-  return async (dispatch) => {
+export const deleteTech = (id:number) => {
+  return async (dispatch:AppDispatch) => {
     try {
       // dispatch(techLoading());
       await fetch(`/techs/${id}`, {
@@ -50,7 +53,7 @@ export const deleteTech = (id) => {
       });
 
       dispatch(techDelete(id));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(techError(error.response.statusText));
     }
   };

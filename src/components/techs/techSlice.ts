@@ -38,7 +38,7 @@ const techSlice = createSlice({
       console.error(action.payload);
       state.error = action.payload;
     },
-    techLoading(state, action) {
+    techLoading(state) {
       state.loading = true;
     },
   },
