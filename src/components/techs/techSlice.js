@@ -27,7 +27,6 @@ const techSlice = createSlice({
       state.error = action.payload;
     },
     techLoading(state, action) {
-      console.log('set loading');
       state.loading = true;
     },
   },
