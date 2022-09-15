@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { getTechs } from '../../actions/techActions';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
-const TechSelectOptions = ({ getTechs, tech: { techs, loading } }) => {
+const TechSelectOptions = () => {
+  const dispatch = useDispatch();
+  const techs = useSelector((state) => state.tech.techs);
+  const loading = useSelector((state) => state.tech.loading);
+
   useEffect(() => {
-    getTechs();
-  }, [getTechs]);
+    dispatch(getTechs());
+  }, [dispatch]);
 
   return (
     !loading &&
@@ -19,13 +22,4 @@ const TechSelectOptions = ({ getTechs, tech: { techs, loading } }) => {
   );
 };
 
-TechSelectOptions.propTypes = {
-  getTechs: PropTypes.func.isRequired,
-  tech: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  tech: state.tech,
-});
-
-export default connect(mapStateToProps, { getTechs })(TechSelectOptions);
+export default TechSelectOptions;

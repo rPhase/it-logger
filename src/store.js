@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import techReducer from './components/techs/techSlice';
 import logReducer from './reducers/logReducer';
-import techReducer from './reducers/techReducer';
+// import techReducer from './reducers/techReducer';
 
 const store = configureStore({
   reducer: {
