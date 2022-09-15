@@ -1,39 +1,55 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
-  logs: null,
+export interface ILog {
+  id: number,
+  message: string,
+  tech: string,
+  attention: boolean,
+  date: string,
+}
+
+export interface ILogState {
+  logs: ILog[],
+  current: ILog | null,
+  loading: boolean,
+  error: string,
+}
+
+
+const initialState: ILogState = {
+  logs: [],
   current: null,
   loading: false,
-  error: null,
+  error: '',
 };
 
 const logSlice = createSlice({
   name: 'log',
   initialState,
   reducers: {
-    logGet(state, action) {
+    logGet(state, action: PayloadAction<ILog[]>) {
       state.logs = action.payload;
       state.loading = false;
     },
-    logAdd(state, action) {
+    logAdd(state, action: PayloadAction<ILog>) {
       state.logs = [...state.logs, action.payload];
       state.loading = false;
     },
-    logDelete(state, action) {
+    logDelete(state, action: PayloadAction<number>) {
       state.logs = state.logs.filter((log) => log.id !== action.payload);
       state.loading = false;
     },
-    logUpdate(state, action) {
+    logUpdate(state, action: PayloadAction<ILog>) {
       state.logs = state.logs.map((log) =>
         log.id === action.payload.id ? action.payload : log
       );
       state.loading = false;
     },
-    logSearch(state, action) {
+    logSearch(state, action: PayloadAction<ILog[]>) {
       state.logs = action.payload;
       state.loading = false;
     },
-    logSetCurrent(state, action) {
+    logSetCurrent(state, action: PayloadAction<ILog>) {
       state.current = action.payload;
     },
     logClearCurrent(state, action) {
@@ -42,7 +58,7 @@ const logSlice = createSlice({
     logSetLoading(state, action) {
       state.loading = true;
     },
-    logError(state, action) {
+    logError(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
   },

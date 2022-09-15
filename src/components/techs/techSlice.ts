@@ -1,28 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
-  techs: null,
+export interface ITech {
+  id: number,
+  firstName: string,
+  lastName: string,
+}
+
+export interface ITechState {
+  techs: ITech[],
+  loading: boolean,
+  error: string
+}
+
+const initialState: ITechState= {
+  techs: [],
   loading: false,
-  error: null,
+  error: '',
 };
 
 const techSlice = createSlice({
   name: 'tech',
   initialState,
   reducers: {
-    techGet(state, action) {
+    techGet(state, action: PayloadAction<ITech[]>) {
       state.techs = action.payload;
       state.loading = false;
     },
-    techAdd(state, action) {
+    techAdd(state, action: PayloadAction<ITech>) {
       state.techs = [...state.techs, action.payload];
       state.loading = false;
     },
-    techDelete(state, action) {
+    techDelete(state, action: PayloadAction<number>) {
       state.techs = state.techs.filter((tech) => tech.id !== action.payload);
       state.loading = false;
     },
-    techError(state, action) {
+    techError(state, action: PayloadAction<string>) {
       console.error(action.payload);
       state.error = action.payload;
     },
