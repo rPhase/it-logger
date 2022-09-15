@@ -44,7 +44,7 @@ export const addTech = (tech) => {
 export const deleteTech = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(techLoading());
+      // dispatch(techLoading());
       await fetch(`/techs/${id}`, {
         method: 'DELETE',
       });
