@@ -1,76 +1,57 @@
 import {
-  GET_TECHS,
-  ADD_TECH,
-  DELETE_TECH,
-  TECHS_ERROR,
-  SET_LOADING,
-} from '../actions/types';
+  techGet,
+  techAdd,
+  techDelete,
+  techError,
+  techLoading,
+} from '../components/techs/techSlice';
 
 // Get techs from server
-export const getTechs = () => async (dispatch) => {
-  try {
-    setLoading();
-    const res = await fetch('/techs');
-    const data = await res.json();
-    dispatch({
-      type: GET_TECHS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: TECHS_ERROR,
-      payload: error.response.statusText,
-    });
-  }
+export const getTechs = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(techLoading());
+      const res = await fetch('/techs');
+      const data = await res.json();
+      dispatch(techGet(data));
+    } catch (error) {
+      dispatch(techError(error.response.statusText));
+    }
+  };
 };
 
 // Add new tech
-export const addTech = (tech) => async (dispatch) => {
-  try {
-    setLoading();
-    const res = await fetch('/techs', {
-      method: 'POST',
-      body: JSON.stringify(tech),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await res.json();
-    dispatch({
-      type: ADD_TECH,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: TECHS_ERROR,
-      payload: error.response.data,
-    });
-  }
+export const addTech = (tech) => {
+  return async (dispatch) => {
+    try {
+      dispatch(techLoading());
+      const res = await fetch('/techs', {
+        method: 'POST',
+        body: JSON.stringify(tech),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      dispatch(techAdd(data));
+    } catch (error) {
+      dispatch(techError(error.response.statusText));
+    }
+  };
 };
 
 // Delete tech from server
-export const deleteTech = (id) => async (dispatch) => {
-  try {
-    setLoading();
-    await fetch(`/techs/${id}`, {
-      method: 'DELETE',
-    });
+export const deleteTech = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(techLoading());
+      await fetch(`/techs/${id}`, {
+        method: 'DELETE',
+      });
 
-    dispatch({
-      type: DELETE_TECH,
-      payload: id,
-    });
-  } catch (error) {
-    dispatch({
-      type: TECHS_ERROR,
-      payload: error.response.statusText,
-    });
-  }
-};
-
-// Set loading to true
-export const setLoading = () => {
-  return {
-    type: SET_LOADING,
+      dispatch(techDelete(id));
+    } catch (error) {
+      dispatch(techError(error.response.statusText));
+    }
   };
 };

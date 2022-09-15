@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { updateLog } from '../../actions/logActions';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import TechSelectOptions from '../techs/TechSelectOptions';
 
-const EditLogModal = ({ current, updateLog }) => {
+const AddLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
-
-  useEffect(() => {
-    if (current) {
-      setMessage(current.message);
-      setAttention(current.attention);
-      setTech(current.tech);
-    }
-  }, [current]);
+  const dispatch = useDispatch();
 
   const onSubmit = () => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
-      const updLog = {
-        id: current.id,
+      const newLog = {
         message,
         attention,
         tech,
         date: new Date(),
       };
+      dispatch(addLog(newLog));
 
-      updateLog(updLog);
-      M.toast({ html: `Log updated by ${tech}` });
+      M.toast({ html: `Log added by ${tech}` });
 
       // Clear Fields
       setMessage('');
@@ -41,7 +32,7 @@ const EditLogModal = ({ current, updateLog }) => {
   };
 
   return (
-    <div id='edit-log-modal' className='modal' style={modalStyle}>
+    <div id='add-log-modal' className='modal' style={modalStyle}>
       <div className='modal-content'>
         <h4>Enter System Log</h4>
         <div className='row'>
@@ -104,18 +95,9 @@ const EditLogModal = ({ current, updateLog }) => {
   );
 };
 
-EditLogModal.propTypes = {
-  current: PropTypes.object,
-  updateLog: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  current: state.log.current,
-});
-
 const modalStyle = {
   width: '75%',
   height: '75%',
 };
 
-export default connect(mapStateToProps, { updateLog })(EditLogModal);
+export default AddLogModal;

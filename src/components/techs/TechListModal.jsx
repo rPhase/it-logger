@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import TechItem from './TechItem';
-import { connect } from 'react-redux';
 import { getTechs } from '../../actions/techActions';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
-const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
+const TechListModal = () => {
+  const dispatch = useDispatch();
+  const techs = useSelector((state) => state.tech.techs);
+  const loading = useSelector((state) => state.tech.loading);
+
   useEffect(() => {
-    getTechs();
-  }, [getTechs]);
+    dispatch(getTechs());
+  }, [dispatch]);
 
   return (
     <div id='tech-list-modal' className='modal'>
@@ -23,13 +26,4 @@ const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
   );
 };
 
-TechListModal.propTypes = {
-  getTechs: PropTypes.func.isRequired,
-  tech: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  tech: state.tech,
-});
-
-export default connect(mapStateToProps, { getTechs })(TechListModal);
+export default TechListModal;
