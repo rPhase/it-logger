@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchLogs } from '../../actions/logActions';
+import { AppDispatch } from '../../store';
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
   const didMount = useRef(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setSearch(e.target.value);
   };
 
   // Add a delay to search while user is typing
   useEffect(() => {
-    let timerID;
+    let timerID: ReturnType<typeof setTimeout>;
 
     // Prevent first render
     if (!didMount.current) {
