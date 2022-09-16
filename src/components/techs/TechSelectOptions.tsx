@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { getTechs } from '../../actions/techActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
 
 const TechSelectOptions = () => {
-  const dispatch = useDispatch();
-  const techs = useSelector((state) => state.tech.techs);
-  const loading = useSelector((state) => state.tech.loading);
+  const dispatch = useDispatch<AppDispatch>();
+  const { techs, loading } = useSelector((state: RootState) => state.tech);
 
   useEffect(() => {
     dispatch(getTechs());
