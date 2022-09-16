@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import TechSelectOptions from '../techs/TechSelectOptions';
+import { AppDispatch } from '../../store';
+import { ILog } from './logSlice';
 
 const AddLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = () => {
     if (message === '' || tech === '') {
@@ -20,7 +22,7 @@ const AddLogModal = () => {
         tech,
         date: new Date(),
       };
-      dispatch(addLog(newLog));
+      dispatch(addLog(newLog as ILog));
 
       M.toast({ html: `Log added by ${tech}` });
 
@@ -73,8 +75,7 @@ const AddLogModal = () => {
                   type='checkbox'
                   className='filledin'
                   checked={attention}
-                  value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  onChange={() => setAttention(!attention)}
                 />
                 <span>Needs Attention</span>
               </label>

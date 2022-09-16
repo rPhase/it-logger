@@ -3,10 +3,11 @@ import Preloader from '../layout/Preloader';
 import LogItem from './LogItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLogs } from '../../actions/logActions';
+import { AppDispatch, RootState } from '../../store';
 
 const Logs = () => {
-  const dispatch = useDispatch();
-  const { logs, loading } = useSelector((state) => state.log);
+  const dispatch = useDispatch<AppDispatch>();
+  const { logs, loading } = useSelector((state: RootState) => state.log);
 
   useEffect(() => {
     dispatch(getLogs());

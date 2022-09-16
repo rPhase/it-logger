@@ -5,7 +5,7 @@ export interface ILog {
   message: string,
   tech: string,
   attention: boolean,
-  date: string,
+  date: Date,
 }
 
 export interface ILogState {

@@ -11,14 +11,18 @@ const TechSelectOptions = () => {
     dispatch(getTechs());
   }, [dispatch]);
 
+  if (loading) {
+    return <></>;
+  }
+
   return (
-    !loading &&
-    techs !== null &&
-    techs.map((t) => (
-      <option key={t.id} value={`${t.firstName} ${t.lastName}`}>
-        {t.firstName} {t.lastName}
-      </option>
-    ))
+    <>
+      {techs.map((t) => (
+        <option key={t.id} value={`${t.firstName} ${t.lastName}`}>
+          {t.firstName} {t.lastName}
+        </option>
+      ))}
+    </>
   );
 };
 
