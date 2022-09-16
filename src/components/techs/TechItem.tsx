@@ -1,12 +1,17 @@
 import React from 'react';
 import { deleteTech } from '../../actions/techActions';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { AppDispatch } from '../../store';
+import { ITech } from './techSlice';
 
-const TechItem = ({ tech }) => {
-  const dispatch = useDispatch();
+interface Props {
+  tech: ITech;
+}
+
+const TechItem = ({ tech }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
 
   const onDelete = () => {
     const techName = `${tech.firstName} ${tech.lastName}`;
@@ -23,10 +28,6 @@ const TechItem = ({ tech }) => {
       </div>
     </li>
   );
-};
-
-TechItem.propTypes = {
-  tech: PropTypes.object.isRequired,
 };
 
 export default TechItem;

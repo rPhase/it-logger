@@ -2,12 +2,17 @@ import React from 'react';
 import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { deleteLog, setCurrent } from '../../actions/logActions';
-import PropTypes from 'prop-types';
+import { AppDispatch } from '../../store';
+import { ILog } from './logSlice';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const LogItem = ({ log }) => {
-  const dispatch = useDispatch();
+interface Props {
+  log: ILog;
+}
+
+const LogItem = ({ log }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
 
   const onDelete = () => {
     dispatch(deleteLog(log.id));
@@ -38,10 +43,6 @@ const LogItem = ({ log }) => {
       </div>
     </li>
   );
-};
-
-LogItem.propTypes = {
-  log: PropTypes.object.isRequired,
 };
 
 export default LogItem;

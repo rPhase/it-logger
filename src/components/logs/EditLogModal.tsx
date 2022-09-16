@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import TechSelectOptions from '../techs/TechSelectOptions';
+import { AppDispatch, RootState } from '../../store';
 
 const EditLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
-  const dispatch = useDispatch();
-  const current = useSelector((state) => state.log.current);
+  const dispatch = useDispatch<AppDispatch>();
+  const current = useSelector((state: RootState) => state.log.current);
 
   useEffect(() => {
     if (current) {
@@ -24,7 +25,7 @@ const EditLogModal = () => {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
       const updLog = {
-        id: current.id,
+        id: current!.id,
         message,
         attention,
         tech,
@@ -83,8 +84,7 @@ const EditLogModal = () => {
                   type='checkbox'
                   className='filledin'
                   checked={attention}
-                  value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  onChange={() => setAttention(!attention)}
                 />
                 <span>Needs Attention</span>
               </label>

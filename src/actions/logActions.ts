@@ -8,25 +8,27 @@ import {
   logSetLoading,
   logError,
   logClearCurrent,
+  ILog,
 } from '../components/logs/logSlice';
+import { AppDispatch } from '../store';
 
 // Get logs from server
 export const getLogs = () => {
-  return async (dispatch) => {
+  return async (dispatch:AppDispatch) => {
     try {
       dispatch(logSetLoading());
       const res = await fetch('/logs');
       const data = await res.json();
       dispatch(logGet(data));
-    } catch (error) {
+    } catch (error:any) {
       dispatch(logError(error.response.statusText));
     }
   };
 };
 
 // Add new log
-export const addLog = (log) => {
-  return async (dispatch) => {
+export const addLog = (log:ILog) => {
+  return async (dispatch:AppDispatch) => {
     try {
       dispatch(logSetLoading());
       const res = await fetch('/logs', {
@@ -38,15 +40,15 @@ export const addLog = (log) => {
       });
       const data = await res.json();
       dispatch(logAdd(data));
-    } catch (error) {
+    } catch (error:any) {
       dispatch(logError(error.response.statusText));
     }
   };
 };
 
 // Delete log from server
-export const deleteLog = (id) => {
-  return async (dispatch) => {
+export const deleteLog = (id:number) => {
+  return async (dispatch:AppDispatch) => {
     try {
       // dispatch(logSetLoading());
       await fetch(`/logs/${id}`, {
@@ -54,15 +56,15 @@ export const deleteLog = (id) => {
       });
 
       dispatch(logDelete(id));
-    } catch (error) {
+    } catch (error:any) {
       dispatch(logError(error.response.statusText));
     }
   };
 };
 
 // Update log on server
-export const updateLog = (log) => {
-  return async (dispatch) => {
+export const updateLog = (log:ILog) => {
+  return async (dispatch:AppDispatch) => {
     try {
       // dispatch(logSetLoading());
       const res = await fetch(`/logs/${log.id}`, {
@@ -75,36 +77,36 @@ export const updateLog = (log) => {
       const data = await res.json();
 
       dispatch(logUpdate(data));
-    } catch (error) {
+    } catch (error:any) {
       dispatch(logError(error.response.statusText));
     }
   };
 };
 
 // Search logs
-export const searchLogs = (text) => {
-  return async (dispatch) => {
+export const searchLogs = (text:string) => {
+  return async (dispatch:AppDispatch) => {
     try {
       dispatch(logSetLoading());
       const res = await fetch(`/logs?q=${text}`);
       const data = await res.json();
       dispatch(logSearch(data));
-    } catch (error) {
+    } catch (error:any) {
       dispatch(logError(error.response.statusText));
     }
   };
 };
 
 // Set current log for editing
-export const setCurrent = (log) => {
-  return (dispatch) => {
+export const setCurrent = (log:ILog) => {
+  return (dispatch:AppDispatch) => {
     dispatch(logSetCurrent(log));
   };
 };
 
 // Clear current log
 export const clearCurrent = () => {
-  return (dispatch) => {
+  return (dispatch:AppDispatch) => {
     dispatch(logClearCurrent());
   };
 };
